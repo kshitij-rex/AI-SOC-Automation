@@ -1,0 +1,217 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "843085b0-70e6-4ed0-abe7-c99a549747f0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -224,
+        -48
+      ],
+      "id": "b783458c-bf15-4589-9b02-b65f75c3c2e8",
+      "name": "Webhook",
+      "webhookId": "843085b0-70e6-4ed0-abe7-c99a549747f0"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Act as a Tier 1 SOC analyst assistant. When provided with a security alert or incident details (including indicators of compromise ,logs ,or metadata),perform the following steps:\n\nSummarize the alert - Provide a clear summary of what triggered the alert ,which systems/users are affected and the nature of the activity(e.g./suspicious login ,malware detection, lateral movement).\n\nEnrich with threat intelligence - Correlate any IOCs(IP addresses ,domains ,hashes)with known threat intel sources .For any IP enrichment, use the tool named 'AbuseIPDB-Enrichment'. Highlight if the indicators are associated with known malware or threat actors.\n\nAssess severity - Based on MITRE ATT&CK mapping ,identify tactics/techniques, and provide an initial severity rating(Low, Medium, High, Critical).\n\nRecommend next action - Suggest investigation steps and potential containment actions."
+            },
+            {
+              "content": "Format output clearly - Return findings in a structured format (Summary, IOC Enrichment, Severity Assessment, Recommended Actions)."
+            },
+            {
+              "content": "=Alert: {{ $json.body.search_name }}\nAlert Details: {{ JSON.stringify($json.body.result,['_time','user','ComputerName'],2)}}\nSource IP: 80.94.93.233"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -64
+      ],
+      "id": "ca7d1f5c-f718-41ff-9cb7-d1e560061af1",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2zD397EjIqrIq8Bs",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0BBCGDSN23",
+          "mode": "list",
+          "cachedResultName": "alerts"
+        },
+        "text": "={{ $json.content.parts[0].text }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.5,
+      "position": [
+        416,
+        -64
+      ],
+      "id": "82a895c4-9351-4dc7-8be2-4802faaf579f",
+      "name": "Send a message",
+      "webhookId": "4a7f208a-5d39-4e43-a785-962a41dbbe95",
+      "credentials": {
+        "slackApi": {
+          "id": "sKew2MgvunoCoVpH",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.abuseipdb.com/api/v2/check",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "ipAddress",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
+            },
+            {
+              "name": "maxAgeInDays",
+              "value": "1"
+            },
+            {
+              "name": "verbose"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Key",
+              "value": "cd3408ab975ec522eb6e3d47116555ee45ebd394a079c2bac1a3f1b344a3c6675076d09c58b99162"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.4,
+      "position": [
+        96,
+        144
+      ],
+      "id": "da13542a-6be2-4bb5-8901-f9274acd0e74",
+      "name": "AbuseIPDB-Enrichment"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "accept-encoding": "identity",
+            "content-length": "421",
+            "host": "192.168.137.133:5678",
+            "content-type": "application/json",
+            "user-agent": "Splunk/58FE8DA1-6137-4DCD-A84F-02AD9E17E32A",
+            "connection": "close"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "sid": "scheduler__spunk__search__RMD5264e6c2b0a258cb2_at_1781868000_2",
+            "search_name": "Test-Brute-Force",
+            "app": "search",
+            "owner": "spunk",
+            "results_link": "http://ubuntu-splunk:8000/app/search/@go?sid=scheduler__spunk__search__RMD5264e6c2b0a258cb2_at_1781868000_2",
+            "result": {
+              "_time": "1781781741.065",
+              "ComputerName": "DESKTOP-UA98JU0",
+              "user": "poojarirakshit@gmail.com",
+              "src_ip": "192.168.137.1",
+              "count": "1"
+            }
+          },
+          "webhookUrl": "http://192.168.137.133:5678/webhook-test/843085b0-70e6-4ed0-abe7-c99a549747f0",
+          "executionMode": "test"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AbuseIPDB-Enrichment": {
+      "ai_tool": [
+        [
+          {
+            "node": "Message a model",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "d8ad4643-3231-4c91-9958-8dc7c8774079",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d37345ecb85e67eb7fcc686e84fdf452cfe4d8b84963665071bd33221c8e115d"
+  },
+  "nodeGroups": [],
+  "id": "tS0ijUaPOSxNe38r",
+  "tags": []
+}
