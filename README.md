@@ -67,7 +67,7 @@ Windows 10 Endpoint → Splunk Enterprise → Alert Rule → Webhook → n8n →
 
 ### Slack Notification
 
-![Slack Alert](screenshots/slack-alert.png)
+![Slack Alert](sceenshots/slack-alert.png)
 
 ---
 
