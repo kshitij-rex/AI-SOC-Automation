@@ -55,7 +55,7 @@ Windows 10 Endpoint → Splunk Enterprise → Alert Rule → Webhook → n8n →
 
 ### n8n Workflow
 
-![Workflow](screenshots/n8n-workflow.png)
+![Workflow](sceenshots/n8n-workflow.png)
 
 ### Splunk Alert Configuration
 
