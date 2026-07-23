@@ -4,7 +4,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "843085b0-70e6-4ed0-abe7-c99a549747f0",
+        "path": "843085b0-77-c99a549747f0",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -13,9 +13,9 @@
         -224,
         -48
       ],
-      "id": "b783458c-bf15-4589-9b02-b65f75c3c2e8",
+      "id": "",
       "name": "Webhook",
-      "webhookId": "843085b0-70e6-4ed0-abe7-c99a549747f0"
+      "webhookId": ""
     },
     {
       "parameters": {
@@ -47,11 +47,11 @@
         0,
         -64
       ],
-      "id": "ca7d1f5c-f718-41ff-9cb7-d1e560061af1",
+      "id": "",
       "name": "Message a model",
       "credentials": {
         "googlePalmApi": {
-          "id": "2zD397EjIqrIq8Bs",
+          "id": "",
           "name": "Google Gemini(PaLM) Api account"
         }
       }
@@ -61,7 +61,7 @@
         "select": "channel",
         "channelId": {
           "__rl": true,
-          "value": "C0BBCGDSN23",
+          "value": "",
           "mode": "list",
           "cachedResultName": "alerts"
         },
@@ -74,19 +74,19 @@
         416,
         -64
       ],
-      "id": "82a895c4-9351-4dc7-8be2-4802faaf579f",
+      "id": "",
       "name": "Send a message",
-      "webhookId": "4a7f208a-5d39-4e43-a785-962a41dbbe95",
+      "webhookId": "",
       "credentials": {
         "slackApi": {
-          "id": "sKew2MgvunoCoVpH",
+          "id": "",
           "name": "Slack account"
         }
       }
     },
     {
       "parameters": {
-        "url": "https://api.abuseipdb.com/api/v2/check",
+        "url": "https://api.abuseipdb.com",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
@@ -108,7 +108,7 @@
           "parameters": [
             {
               "name": "Key",
-              "value": "cd3408ab975ec522eb6e3d47116555ee45ebd394a079c2bac1a3f1b344a3c6675076d09c58b99162"
+              "value": ""
             },
             {
               "name": "Accept",
@@ -124,7 +124,7 @@
         96,
         144
       ],
-      "id": "da13542a-6be2-4bb5-8901-f9274acd0e74",
+      "id": "",
       "name": "AbuseIPDB-Enrichment"
     }
   ],
@@ -135,28 +135,28 @@
           "headers": {
             "accept-encoding": "identity",
             "content-length": "421",
-            "host": "192.168.137.133:5678",
+            "host": "192.168.:5678",
             "content-type": "application/json",
-            "user-agent": "Splunk/58FE8DA1-6137-4DCD-A84F-02AD9E17E32A",
+            "user-agent": "",
             "connection": "close"
           },
           "params": {},
           "query": {},
           "body": {
-            "sid": "scheduler__spunk__search__RMD5264e6c2b0a258cb2_at_1781868000_2",
+            "sid": "scheduler__spunk__search_2_at0_2",
             "search_name": "Test-Brute-Force",
             "app": "search",
             "owner": "spunk",
-            "results_link": "http://ubuntu-splunk:8000/app/search/@go?sid=scheduler__spunk__search__RMD5264e6c2b0a258cb2_at_1781868000_2",
+            "results_link": "",
             "result": {
               "_time": "1781781741.065",
-              "ComputerName": "DESKTOP-UA98JU0",
-              "user": "poojarirakshit@gmail.com",
+              "ComputerName": "",
+              "user": "",
               "src_ip": "192.168.137.1",
               "count": "1"
             }
           },
-          "webhookUrl": "http://192.168.137.133:5678/webhook-test/843085b0-70e6-4ed0-abe7-c99a549747f0",
+          "webhookUrl": "",
           "executionMode": "test"
         },
         "pairedItem": {
@@ -206,12 +206,12 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "d8ad4643-3231-4c91-9958-8dc7c8774079",
+  "versionId": "",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "d37345ecb85e67eb7fcc686e84fdf452cfe4d8b84963665071bd33221c8e115d"
+    "instanceId": ""
   },
   "nodeGroups": [],
-  "id": "tS0ijUaPOSxNe38r",
+  "id": "",
   "tags": []
 }
